@@ -476,10 +476,16 @@ namespace diskann {
                      METADATA_SIZE);
 #endif
 
+    diskann::cout << "PQ Table: " << pq_table_bin << std::endl;
+    diskann::cout << "PQ Compressed Vectors: " << pq_compressed_vectors << std::endl;
+    diskann::cout << "Disk Index: " << disk_index_file << std::endl;
+    diskann::cout << "Medoids: " << medoids_file << std::endl;
+    diskann::cout << "Centroids: " << centroids_file << std::endl;
+
     this->disk_index_file = disk_index_file;
 
     if (pq_file_num_centroids != 256) {
-      diskann::cout << "Error. Number of PQ centroids is not 256. Exiting."
+      diskann::cout << "Error. Number of PQ centroids was expected to be 256, but was instead " << pq_file_num_centroids << ". Exiting."
                     << std::endl;
       return -1;
     }
@@ -1045,7 +1051,6 @@ namespace diskann {
 
     // re-sort by distance
     std::sort(full_retset.begin(), full_retset.end());
-
     if (use_reorder_data) {
       if (!(this->reorder_data_exists)) {
         throw ANNException(

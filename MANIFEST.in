@@ -9,5 +9,6 @@ recursive-include include *
 recursive-include python *
 recursive-include windows *
 prune python/tests
+prune python/examples
 recursive-include src *
 recursive-include tests *
