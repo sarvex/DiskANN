@@ -19,10 +19,11 @@ def _calculate_recall(
 
     found = 0
     for i in range(0, result_set_tags.shape[0]):
-        result_set_set = set(result_set_tags[i][0:recall_at])
-        truth_set_set = set()
-        for knn_index in truth_set_indices[i][0:recall_at]:
-            truth_set_set.add(original_indices_to_tags[knn_index])  # mapped into our tag number instead
+        result_set_set = set(result_set_tags[i][:recall_at])
+        truth_set_set = {
+            original_indices_to_tags[knn_index]
+            for knn_index in truth_set_indices[i][:recall_at]
+        }
         found += len(result_set_set.intersection(truth_set_set))
     return found / (result_set_tags.shape[0] * recall_at)
 
@@ -242,7 +243,7 @@ class TestDynamicMemoryIndex(unittest.TestCase):
             "initial_search_complexity": -1,
             "search_threads": -1,
         }
-        for bad_value_key in good_ranges.keys():
+        for bad_value_key in good_ranges:
             kwargs = good_ranges.copy()
             kwargs[bad_value_key] = bad_ranges[bad_value_key]
             with self.subTest():
@@ -253,7 +254,7 @@ class TestDynamicMemoryIndex(unittest.TestCase):
         good_ranges = {"complexity": 5, "k_neighbors": 10}
         bad_ranges = {"complexity": -1, "k_neighbors": 0}
         vector_bin_file = self._test_matrix[0][5]
-        for bad_value_key in good_ranges.keys():
+        for bad_value_key in good_ranges:
             kwargs = good_ranges.copy()
             kwargs[bad_value_key] = bad_ranges[bad_value_key]
             with self.subTest():
@@ -280,7 +281,7 @@ class TestDynamicMemoryIndex(unittest.TestCase):
             "num_threads": -1,
         }
         vector_bin_file = self._test_matrix[0][5]
-        for bad_value_key in good_ranges.keys():
+        for bad_value_key in good_ranges:
             kwargs = good_ranges.copy()
             kwargs[bad_value_key] = bad_ranges[bad_value_key]
             with self.subTest():

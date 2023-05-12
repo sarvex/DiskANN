@@ -58,7 +58,7 @@ def _valid_path_and_dtype(
     else:
         vector_bin_path = data
         _assert(
-            Path(data).exists() and Path(data).is_file(),
+            Path(vector_bin_path).exists() and Path(vector_bin_path).is_file(),
             "if data is of type `str`, it must both exist and be a file",
         )
         vector_dtype_actual = vector_dtype

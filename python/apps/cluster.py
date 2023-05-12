@@ -25,4 +25,4 @@ if __name__ == "__main__":
 
     permuted_data = data[permutation]
 
-    utils.numpy_to_bin(permuted_data, args.indexdata_file + ".cluster")
+    utils.numpy_to_bin(permuted_data, f"{args.indexdata_file}.cluster")

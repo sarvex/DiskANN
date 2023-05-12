@@ -204,7 +204,7 @@ class TestStaticMemoryIndex(unittest.TestCase):
             "initial_search_complexity": 0,
             "index_prefix": "",
         }
-        for bad_value_key in good_ranges.keys():
+        for bad_value_key in good_ranges:
             kwargs = good_ranges.copy()
             kwargs[bad_value_key] = bad_ranges[bad_value_key]
             with self.subTest():
@@ -215,7 +215,7 @@ class TestStaticMemoryIndex(unittest.TestCase):
         good_ranges = {"complexity": 5, "k_neighbors": 10}
         bad_ranges = {"complexity": -1, "k_neighbors": 0}
         vector_bin_file = self._test_matrix[0][5]
-        for bad_value_key in good_ranges.keys():
+        for bad_value_key in good_ranges:
             kwargs = good_ranges.copy()
             kwargs[bad_value_key] = bad_ranges[bad_value_key]
             with self.subTest():
@@ -242,7 +242,7 @@ class TestStaticMemoryIndex(unittest.TestCase):
             "num_threads": -1,
         }
         vector_bin_file = self._test_matrix[0][5]
-        for bad_value_key in good_ranges.keys():
+        for bad_value_key in good_ranges:
             kwargs = good_ranges.copy()
             kwargs[bad_value_key] = bad_ranges[bad_value_key]
             with self.subTest():

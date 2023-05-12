@@ -229,7 +229,7 @@ class DynamicMemoryIndex:
         :type save_path: str
         :param compact_before_save:
         """
-        if save_path == "" and self._index_path == "":
+        if not save_path and self._index_path == "":
             raise ValueError(
                 "save_path cannot be empty if index_path is not set to a valid path in the constructor"
             )

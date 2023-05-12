@@ -59,7 +59,7 @@ class TestBuildDiskIndex(unittest.TestCase):
             "num_threads": -1,
             "pq_disk_bytes": -1,
         }
-        for bad_value_key in good_ranges.keys():
+        for bad_value_key in good_ranges:
             kwargs = good_ranges.copy()
             kwargs[bad_value_key] = bad_ranges[bad_value_key]
             with self.subTest(
@@ -121,7 +121,7 @@ class TestBuildMemoryIndex(unittest.TestCase):
             "num_threads": 1,
             "num_pq_bytes": -60,
         }
-        for bad_value_key in good_ranges.keys():
+        for bad_value_key in good_ranges:
             kwargs = good_ranges.copy()
             kwargs[bad_value_key] = bad_ranges[bad_value_key]
             with self.subTest(

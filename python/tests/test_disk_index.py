@@ -166,7 +166,7 @@ class TestDiskIndex(unittest.TestCase):
     def test_value_ranges_search(self):
         good_ranges = {"complexity": 5, "k_neighbors": 10, "beam_width": 2}
         bad_ranges = {"complexity": -1, "k_neighbors": 0, "beam_width": 0}
-        for bad_value_key in good_ranges.keys():
+        for bad_value_key in good_ranges:
             kwargs = good_ranges.copy()
             kwargs[bad_value_key] = bad_ranges[bad_value_key]
             with self.subTest():
@@ -193,7 +193,7 @@ class TestDiskIndex(unittest.TestCase):
             "beam_width": -1,
             "num_threads": -1,
         }
-        for bad_value_key in good_ranges.keys():
+        for bad_value_key in good_ranges:
             kwargs = good_ranges.copy()
             kwargs[bad_value_key] = bad_ranges[bad_value_key]
             with self.subTest():

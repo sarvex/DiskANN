@@ -18,7 +18,7 @@ def calculate_recall(
     """
     found = 0
     for i in range(0, result_set_indices.shape[0]):
-        result_set_set = set(result_set_indices[i][0:recall_at])
-        truth_set_set = set(truth_set_indices[i][0:recall_at])
+        result_set_set = set(result_set_indices[i][:recall_at])
+        truth_set_set = set(truth_set_indices[i][:recall_at])
         found += len(result_set_set.intersection(truth_set_set))
     return found / (result_set_indices.shape[0] * recall_at)

@@ -30,11 +30,10 @@ def numpy_to_bin(array, out_file):
     shape = np.shape(array)
     npts = shape[0].astype(np.uint32)
     ndims = shape[1].astype(np.uint32)
-    f = open(out_file, "wb")
-    f.write(npts.tobytes())
-    f.write(ndims.tobytes())
-    f.write(array.tobytes())
-    f.close()
+    with open(out_file, "wb") as f:
+        f.write(npts.tobytes())
+        f.write(ndims.tobytes())
+        f.write(array.tobytes())
 
 
 def read_gt_file(gt_file) -> Tuple[np.ndarray[int], np.ndarray[float]]:
@@ -67,8 +66,8 @@ def calculate_recall(
     """
     found = 0
     for i in range(0, result_set_indices.shape[0]):
-        result_set_set = set(result_set_indices[i][0:recall_at])
-        truth_set_set = set(truth_set_indices[i][0:recall_at])
+        result_set_set = set(result_set_indices[i][:recall_at])
+        truth_set_set = set(truth_set_indices[i][:recall_at])
         found += len(result_set_set.intersection(truth_set_set))
     return found / (result_set_indices.shape[0] * recall_at)
 
